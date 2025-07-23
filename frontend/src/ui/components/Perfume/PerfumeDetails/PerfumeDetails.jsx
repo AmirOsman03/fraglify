@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import usePerfumeDetails from '../../../../hooks/usePerfumeDetails.js';
 import {useParams} from 'react-router';
+import useWishlist from "../../../../hooks/useWishlist.js";
+import WishlistModal from "../../Wishlist/WishlistModal/WishlistModal.jsx";
 
 const noteImages = {
     Bergamot: 'https://t3.ftcdn.net/jpg/08/27/71/00/360_F_827710062_QlRkI05PTtXzLPy4cY3xHIcGkE9Saeps.jpg',
@@ -21,6 +23,25 @@ const noteImages = {
     Kiwi: 'https://c1.wallpaperflare.com/preview/1017/908/868/green-kiwi-fruit-black.jpg',
     Black_orchid: 'https://www.shutterstock.com/image-photo/phalaenopsis-orchid-black-angel-on-600nw-2392398281.jpg',
     Amber: 'https://st4.depositphotos.com/36959558/38400/i/450/depositphotos_384002918-stock-photo-transparent-amber-sand-dark-background.jpg',
+    Marine_accord: 'https://static.wixstatic.com/media/nsplsh_6852656d6368305a447749~mv2_d_4896_3264_s_4_2.jpg/v1/fill/w_858,h_584,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/nsplsh_6852656d6368305a447749~mv2_d_4896_3264_s_4_2.jpg',
+    Guaiac_wood: 'https://www.perfumestars.com/wp-content/uploads/2024/08/guaiac-wood-in-fragrances.webp',
+    Sage: 'https://kellogggarden.com/wp-content/uploads/2021/02/Grow-Sage.jpg',
+    Geranium: 'https://all-americaselections.org/wp-content/uploads/2016/11/GeraniumCalliopeMDarkRed3.jpg',
+    Damask_rose: 'https://rosehomegarden.com/wp-content/uploads/2024/01/La-Ville-de-Bruxelles-rose-jpg.webp',
+    Pepper: 'https://www.shutterstock.com/image-photo/red-bell-pepper-isolated-against-600nw-2247973041.jpg',
+    Ambroxan: 'https://cdn.kaochemicals-eu.com/common/project/images/xambroxan-small-opt.jpg.pagespeed.ic.ILNEEgNd5t.jpg',
+    Tonka_bean: 'https://www.alyssaashley.com/cdn/shop/articles/Tonka_Beans.jpg?v=1597322763&width=3504',
+    Tuberose: 'https://www.dutchgrown.com/cdn/shop/articles/Tuberose.jpg?v=1671195538',
+    Cinnamon: 'https://spices.com/cdn/shop/products/2aafc516a293cb71e5a78ee6685082ae9869ab3ca60f83401a4d4d54806f157b_5a4f342d-dd26-4ad1-949a-e9abba003c55.jpg?v=1654795859&width=1445',
+    Leather: 'https://hidepark.co.uk/cdn/shop/articles/noah-kroes-9Iju1D_znUw-unsplash_840x_crop_center.jpg?v=1661268388',
+    Coffee: 'https://www.barniescoffee.com/cdn/shop/articles/beans-brew-caffeine-coffee-2059_1.jpg?v=1660683860',
+    White_flowers: 'https://hips.hearstapps.com/hmg-prod/images/gettyimages-1183074816-649c5cb4c4d8e.jpg?crop=0.447xw:1.00xh;0.318xw,0&resize=980:*',
+    Green_tea: 'https://img.forestessentialsindia.com/blog/wp-content/uploads/2020/02/Green-tea.png',
+    Pineapple: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG7SxOWYbcQgZG35EOPOKfLRL_GoY_F-QwFA&s',
+    Musk: 'https://aromaticscentslab.com/wp-content/uploads/2022/07/musk-scaled.jpg',
+    Green_apple: 'https://i5.walmartimages.com/seo/Fresh-Granny-Smith-Apple-Each_bf2ec88a-2f36-41f2-93d3-c3161772733d_1.cdc913433c6acc6bf9201dc1fa86bac9.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF',
+    Iris: 'https://cdn.britannica.com/19/235419-050-9DF1D2AF/Purple-iris-flower-plant.jpg',
+    Gourmand: 'https://www.luxsb.com/sites/default/files/Gourmand.jpeg'
 };
 
 const normalize = str =>
@@ -38,6 +59,15 @@ const getNoteImage = (note) => {
 const PerfumeDetails = () => {
     const {id} = useParams();
     const {perfume, loading} = usePerfumeDetails(id);
+    const { onAdd, wishlist } = useWishlist();
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleAddToCart = () => {
+        if (perfume && perfume.id) {
+            onAdd(perfume.id);
+            setModalOpen(true);
+        }
+    }
 
     if (loading) {
         return (
@@ -112,20 +142,40 @@ const PerfumeDetails = () => {
                         <p className="text-gray-600 leading-relaxed">{perfume.description}</p>
                     </div>
                 )}
-                <div className="text-2xl font-bold text-purple-700 mt-2">${perfume.price}</div>
-                <div className={"flex justify-center items-center w-full mt-4"}>
+
+                <div className="flex justify-center items-center w-full mb-4">
+                    <div className="text-2xl font-bold text-purple-700">${perfume.price}</div>
+                </div>
+
+                <div className="flex items-center justify-center w-full  gap-4 mt-4">
+                    <input
+                        type="number"
+                        min="1"
+                        max={perfume.quantity}
+                        defaultValue="1"
+                        className="w-24 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    />
+                    <div className="text-sm font-medium text-gray-600">
+                        {perfume.quantity} left
+                    </div>
                     <button
-                        className="flex items-center px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100">
+                        className="flex items-center px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-200 sm:text-base sm:px-6 dark:hover:bg-gray-800 dark:text-gray-300 gap-x-3 hover:bg-gray-100 rounded-lg border border-gray-300"
+                        onClick={handleAddToCart}
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
                             <path
                                 d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
                         </svg>
-
                         <span>Add to Cart</span>
                     </button>
                 </div>
             </div>
+            <WishlistModal
+                open={modalOpen}
+                onClose={() => setModalOpen(false)}
+                wishlist={wishlist}
+            />
         </main>
     );
 };

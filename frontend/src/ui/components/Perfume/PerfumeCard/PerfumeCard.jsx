@@ -31,7 +31,12 @@ const PerfumeCard = ({perfume}) => {
                 <div className="text-sm text-gray-500 mb-1 truncate">{perfume.brand}</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-1 truncate">{perfume.name}</h3>
                 <div className="text-xs text-purple-700 font-medium mb-2">{formatType(perfume.type)}</div>
-                <div className="text-base font-bold text-gray-900 mt-1">${perfume.price}</div>
+                <div className="flex items-center justify-between mt-1">
+                    <div className="text-base font-bold text-gray-900">${perfume.price}</div>
+                    <div className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                        {perfume.quantity} left
+                    </div>
+                </div>
             </div>
         </div>
     );

@@ -3,10 +3,7 @@ package mk.com.fraglify.backend.web.controllers;
 import mk.com.fraglify.backend.dto.wishlist.DisplayWishlistDto;
 import mk.com.fraglify.backend.service.application.WishlistApplicationService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/wishlist")
@@ -23,13 +20,13 @@ public class WishlistController {
         return ResponseEntity.ok(wishlistApplicationService.getById(1L));
     }
 
-    @PostMapping("/addPerfume")
-    public ResponseEntity<DisplayWishlistDto> addPerfumeToWishlist(Long perfumeId) {
+    @PostMapping("/addPerfume/{perfumeId}")
+    public ResponseEntity<DisplayWishlistDto> addPerfumeToWishlist(@PathVariable Long perfumeId) {
         return ResponseEntity.ok(wishlistApplicationService.addParfumeToWishlist(1L, perfumeId));
     }
 
-    @PostMapping("/removePerfume")
-    public ResponseEntity<DisplayWishlistDto> removePerfumeFromWishlist(Long perfumeId) {
+    @PostMapping("/removePerfume/{perfumeId}")
+    public ResponseEntity<DisplayWishlistDto> removePerfumeFromWishlist(@PathVariable Long perfumeId) {
         return ResponseEntity.ok(wishlistApplicationService.removeParfumeFromWishlist(1L, perfumeId));
     }
 
