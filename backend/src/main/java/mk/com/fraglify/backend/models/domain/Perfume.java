@@ -37,6 +37,8 @@ public class Perfume {
     @Enumerated(EnumType.STRING)
     private PerfumeGender gender;
 
+    private int quantity;
+
     private boolean isAvailable;
 
     private String imageUrl;
@@ -58,6 +60,7 @@ public class Perfume {
             int size,
             int price,
             PerfumeGender gender,
+            int quantity,
             boolean isAvailable,
             String imageUrl
     ) {
@@ -69,6 +72,7 @@ public class Perfume {
         this.size = size;
         this.price = price;
         this.gender = gender;
+        this.quantity = quantity;
         this.isAvailable = isAvailable;
         this.imageUrl = imageUrl;
     }

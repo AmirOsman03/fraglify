@@ -17,6 +17,7 @@ public record DisplayPerfumeDto(
         int size,
         int price,
         PerfumeGender gender,
+        int quantity,
         boolean isAvailable,
         String imageUrl,
         double averageRating
@@ -33,6 +34,7 @@ public record DisplayPerfumeDto(
                 perfume.getSize(),
                 perfume.getPrice(),
                 perfume.getGender(),
+                perfume.getQuantity(),
                 perfume.isAvailable(),
                 perfume.getImageUrl(),
                 perfume.getRatings() == null || perfume.getRatings().isEmpty()

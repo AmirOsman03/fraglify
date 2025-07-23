@@ -44,6 +44,7 @@ public class PerfumeServiceImpl implements PerfumeService {
                     existingPerfume.setSize(perfume.getSize());
                     existingPerfume.setPrice(perfume.getPrice());
                     existingPerfume.setGender(perfume.getGender());
+                    existingPerfume.setQuantity(perfume.getQuantity());
                     existingPerfume.setAvailable(perfume.isAvailable());
                     existingPerfume.setImageUrl(perfume.getImageUrl());
                     return perfumeRepository.save(existingPerfume);
