@@ -13,7 +13,10 @@ This web application allows users to explore perfumes and share their personal r
 
 - 🌟 **Perfume Reviews**  
   - Users can leave a rating and comment on perfumes  
-  - Displays all reviews related to each perfume  
+  - Displays all reviews related to each perfume
+ 
+- ❤️ **Wishlist**  
+  - View and manage wishlist items from a dedicated section  
 
 - 🔍 **Filtering & Discovery**  
   - Easily explore perfumes by rating, brand, or type  
@@ -26,6 +29,7 @@ This web application allows users to explore perfumes and share their personal r
 ---
 
 ## 🧱 Technologies Used
-- **Backend**: Spring Boot (RESTful API)
+- **Backend**: Spring Boot
 - **Frontend**: React
 - **Database**: PostgreSQL
+- **Payment**: Stripe  
