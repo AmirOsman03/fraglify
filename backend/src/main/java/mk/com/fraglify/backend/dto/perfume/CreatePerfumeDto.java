@@ -15,6 +15,7 @@ public record CreatePerfumeDto(
         int size,
         int price,
         PerfumeGender gender,
+        int quantity,
         boolean isAvailable,
         String imageUrl
 ) {
@@ -28,6 +29,7 @@ public record CreatePerfumeDto(
                 perfume.getSize(),
                 perfume.getPrice(),
                 perfume.getGender(),
+                perfume.getQuantity(),
                 perfume.isAvailable(),
                 perfume.getImageUrl()
         );
@@ -43,6 +45,7 @@ public record CreatePerfumeDto(
                 size,
                 price,
                 gender,
+                quantity,
                 isAvailable,
                 imageUrl
         );

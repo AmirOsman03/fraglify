@@ -23,7 +23,7 @@ public class DataInitializer {
         this.wishlistService = wishlistService;
     }
 
-//    @PostConstruct
+    @PostConstruct
     private void init() {
         Wishlist wishlist = wishlistService.create(new Wishlist());
 
@@ -36,6 +36,7 @@ public class DataInitializer {
                 50,
                 75,
                 PerfumeGender.FEMALE,
+                10,
                 true,
                 "https://pvh-brands.imgix.net/catalog/product/media/99350070_995_FL-AS-F1_014.jpg?w=&h=&crop=top&fit=crop&auto=compress&auto=format"
         );
@@ -49,6 +50,7 @@ public class DataInitializer {
                 100,
                 85,
                 PerfumeGender.MALE,
+                5,
                 true,
                 "https://moustaphalabban.com/cdn/shop/files/3614273953832_1b6e3274-6862-4e84-ac27-2513d61e4607.jpg?v=1736684743"
         );
@@ -62,6 +64,7 @@ public class DataInitializer {
                 50,
                 65,
                 PerfumeGender.FEMALE,
+                7,
                 true,
                 "https://urbanshop.pk/wp-content/uploads/2023/05/Untitled-design-28-500x500.png"
         );
@@ -75,6 +78,7 @@ public class DataInitializer {
                 100,
                 90,
                 PerfumeGender.MALE,
+                3,
                 true,
                 "https://fragrance.mk/wp-content/uploads/2022/01/chanel-bleu-de-chanel-edt-1.jpg"
         );
@@ -88,6 +92,7 @@ public class DataInitializer {
                 30,
                 80,
                 PerfumeGender.FEMALE,
+                2,
                 true,
                 "https://cdn.basler-beauty.de/out/pictures/generated/product/1/1200_1200_100/2621428-Viktor-Rolf-Flowerbomb-Tiger-Lily-Eau-de-Parfum-50-ml.5657877a.jpg"
         );
